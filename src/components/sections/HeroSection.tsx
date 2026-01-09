@@ -1,9 +1,16 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { GraduationCap, Sparkles } from "lucide-react";
 
 export const HeroSection = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    // Initialize with actual window width if available
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 1024;
+    }
+    return false;
+  });
 
   useEffect(() => {
     const checkMobile = () => {
@@ -18,21 +25,55 @@ export const HeroSection = () => {
 
   return (
     <section 
-      className="relative overflow-hidden"
+      className="relative overflow-hidden hero-section-mobile"
       style={{ 
         backgroundColor: '#f5f3f0',
-        minHeight: isMobile ? 'auto' : '600px',
+        minHeight: '600px',
         paddingBottom: isMobile ? '0' : '0',
         position: 'relative'
       }}
     >
+      {/* Background Image for Mobile - Using absolute positioned div */}
+      <div
+        className="hero-mobile-bg-container"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          minHeight: '600px',
+          backgroundImage: 'url(/hero-image.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
+          backgroundRepeat: 'no-repeat',
+          zIndex: 0,
+          pointerEvents: 'none'
+        }}
+      />
+      {/* Overlay for mobile to ensure text readability */}
+      <div
+        className="hero-mobile-overlay"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'linear-gradient(135deg, rgba(245, 243, 240, 0.3) 0%, rgba(245, 243, 240, 0.2) 100%)',
+          zIndex: 1,
+          pointerEvents: 'none'
+        }}
+      />
       <div 
         className="flex flex-col lg:flex-row items-center justify-between max-w-[1600px] mx-auto relative"
         style={{
           padding: isMobile ? '1rem 1rem 0.5rem' : 'clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem)',
           gap: isMobile ? '0.5rem' : 'clamp(2rem, 4vw, 3rem)',
           minHeight: 'auto',
-          width: '100%'
+          width: '100%',
+          position: 'relative',
+          zIndex: 2
         }}
       >
         {/* Left Content - Hero Content */}
@@ -42,17 +83,45 @@ export const HeroSection = () => {
               flex: 1,
               maxWidth: '100%',
               width: '100%',
-              zIndex: 2,
+              zIndex: isMobile ? 2 : 2,
               position: 'relative',
               display: 'flex',
               flexDirection: 'column',
               alignItems: isMobile ? 'center' : 'flex-start',
               justifyContent: isMobile ? 'flex-start' : 'center',
               gap: isMobile ? '0.75rem' : '0',
-              padding: isMobile ? '0' : '0',
+              padding: isMobile ? '1rem' : '0',
               boxSizing: 'border-box'
             }}
           >
+          {/* Icon for Hero Section */}
+          {isMobile && (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginBottom: '1rem',
+                zIndex: 3,
+                position: 'relative'
+              }}
+            >
+              <div
+                style={{
+                  width: '60px',
+                  height: '60px',
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, #0e7c86 0%, #086267 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: '0 4px 12px rgba(14, 124, 134, 0.3)'
+                }}
+              >
+                <GraduationCap size={32} color="white" />
+              </div>
+            </div>
+          )}
           <h1 
             className="text-center lg:text-left"
             style={{ 
@@ -70,7 +139,9 @@ export const HeroSection = () => {
               padding: 0,
               wordWrap: 'break-word',
               overflowWrap: 'break-word',
-              boxSizing: 'border-box'
+              boxSizing: 'border-box',
+              position: 'relative',
+              zIndex: 3
             }}
           >
             Transform your career with{' '}
@@ -105,112 +176,113 @@ export const HeroSection = () => {
           </p>
           </div>
 
-        {/* Right Side - Hero Image */}
-          <div
-            className="flex-1 relative z-10 flex items-center justify-center"
-            style={{
-              flex: 1,
-              position: 'relative',
-              zIndex: 1,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              minWidth: 0
-            }}
-          >
-          <div
-            className="relative w-full hero-image-wrapper mt-2 lg:mt-0"
-            style={{
-              position: 'relative',
-              width: '100%',
-              height: isMobile ? '200px' : 'clamp(300px, 50vw, 500px)',
-              minHeight: isMobile ? '200px' : '300px',
-              maxHeight: isMobile ? '200px' : '500px',
-              background: 'linear-gradient(135deg, #e8e6e1 0%, #d4cfc7 100%)',
-              borderRadius: '1rem',
-              overflow: 'hidden',
-              boxShadow: isMobile ? '0 8px 16px rgba(0, 0, 0, 0.08)' : '0 20px 25px rgba(0, 0, 0, 0.1)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              zIndex: 1
-            }}
-          >
-            {/* Main Image - Unilearners Hero Image */}
-            <img
-              src="/hero-image.png"
-              alt="Unilearners - Empowering students with internships and courses"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                display: 'block',
-                position: 'absolute',
-                top: 0,
-                left: 0
-              }}
-            />
-            
-            {/* Decorative curved lines overlay - particularly upper right */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-              <svg className="w-full h-full" viewBox="0 0 400 500" preserveAspectRatio="none" style={{ opacity: 0.3 }}>
-                <path
-                  d="M300,50 Q320,80 340,100 T380,120"
-                  fill="none"
-                  stroke="#f8f9fa"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M280,120 Q300,140 320,160 T360,180"
-                  fill="none"
-                  stroke="#f8f9fa"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M320,80 Q340,100 360,120 T400,140"
-                  fill="none"
-                  stroke="#f8f9fa"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M250,150 Q270,170 290,190 T330,210"
-                  fill="none"
-                  stroke="#f8f9fa"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
-
-            {/* Decorative curves */}
+        {/* Right Side - Hero Image (Desktop only) */}
+          {!isMobile && (
             <div
-              className="absolute pointer-events-none"
+              className="flex-1 relative z-10 flex items-center justify-center"
               style={{
-                top: '100px',
-                right: '-100px',
-                width: '300px',
-                height: '300px',
-                border: '2px solid rgba(255, 255, 255, 0.3)',
-                borderRadius: '50%'
+                flex: 1,
+                position: 'relative',
+                zIndex: 1,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minWidth: 0
               }}
-            />
-            <div
-              className="absolute pointer-events-none"
-              style={{
-                bottom: '50px',
-                right: '100px',
-                width: '200px',
-                height: '150px',
-                border: '2px solid rgba(255, 255, 255, 0.2)',
-                borderRadius: '50%'
-              }}
-            />
+            >
+              <div
+                className="relative w-full hero-image-wrapper mt-2 lg:mt-0"
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  height: 'clamp(300px, 50vw, 500px)',
+                  minHeight: '300px',
+                  maxHeight: '500px',
+                  background: 'linear-gradient(135deg, #e8e6e1 0%, #d4cfc7 100%)',
+                  borderRadius: '1rem',
+                  overflow: 'hidden',
+                  boxShadow: '0 20px 25px rgba(0, 0, 0, 0.1)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  zIndex: 1
+                }}
+              >
+                {/* Main Image - Unilearners Hero Image */}
+                <img
+                  src="/hero-image.png"
+                  alt="Unilearners - Empowering students with internships and courses"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0
+                  }}
+                />
+                
+                {/* Decorative curved lines overlay - particularly upper right */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                  <svg className="w-full h-full" viewBox="0 0 400 500" preserveAspectRatio="none" style={{ opacity: 0.3 }}>
+                    <path
+                      d="M300,50 Q320,80 340,100 T380,120"
+                      fill="none"
+                      stroke="#f8f9fa"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M280,120 Q300,140 320,160 T360,180"
+                      fill="none"
+                      stroke="#f8f9fa"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M320,80 Q340,100 360,120 T400,140"
+                      fill="none"
+                      stroke="#f8f9fa"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M250,150 Q270,170 290,190 T330,210"
+                      fill="none"
+                      stroke="#f8f9fa"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </div>
 
+                {/* Decorative curves */}
+                <div
+                  className="absolute pointer-events-none"
+                  style={{
+                    top: '100px',
+                    right: '-100px',
+                    width: '300px',
+                    height: '300px',
+                    border: '2px solid rgba(255, 255, 255, 0.3)',
+                    borderRadius: '50%'
+                  }}
+                />
+                <div
+                  className="absolute pointer-events-none"
+                  style={{
+                    bottom: '50px',
+                    right: '100px',
+                    width: '200px',
+                    height: '150px',
+                    border: '2px solid rgba(255, 255, 255, 0.2)',
+                    borderRadius: '50%'
+                  }}
+                />
+              </div>
             </div>
-        </div>
+          )}
       </div>
       
       {/* Let's Talk Button - At the end of hero section, above Stats */}
@@ -220,7 +292,9 @@ export const HeroSection = () => {
           padding: isMobile ? '0 1rem 1.5rem' : '0 clamp(1rem, 4vw, 2rem) 2rem',
           display: 'flex',
           justifyContent: 'center',
-          width: '100%'
+          width: '100%',
+          position: 'relative',
+          zIndex: 2
         }}
       >
         <Link

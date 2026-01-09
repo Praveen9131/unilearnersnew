@@ -131,7 +131,7 @@ export const Footer = () => {
               }}
             >
               <a
-                href="https://linkedin.com/company/unilearners"
+                href="https://www.linkedin.com/company/unilearners1"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{

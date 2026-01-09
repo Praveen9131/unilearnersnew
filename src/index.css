@@ -23,6 +23,38 @@
   }
 }
 
+/* Hero mobile background image - show on mobile/tablet, hide on desktop */
+/* Mobile: 0-767px, Tablet: 768px-1023px, Desktop: 1024px+ */
+@media screen and (max-width: 1023px) {
+  .hero-mobile-bg-container {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  .hero-mobile-overlay {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  .hero-section-mobile {
+    background-color: transparent !important;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .hero-mobile-bg-container {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  .hero-mobile-overlay {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  .hero-section-mobile {
+    background-color: #f5f3f0 !important;
+  }
+}
+
 @layer base {
   :root {
     /* Go1.com Exact Brand Colors */

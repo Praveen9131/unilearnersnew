@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 export const CTASection = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -140,7 +141,8 @@ export const CTASection = () => {
             </p>
 
             {/* CTA Button */}
-            <button
+            <Link
+              to="/contact?expert=true"
               style={{
                 background: '#0e7c86',
                 color: 'white',
@@ -151,7 +153,9 @@ export const CTASection = () => {
                 fontWeight: 600,
                 cursor: 'pointer',
                 transition: 'all 0.3s ease',
-                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif'
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif',
+                textDecoration: 'none',
+                display: 'inline-block'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = '#086267';
@@ -165,7 +169,7 @@ export const CTASection = () => {
               }}
             >
               Speak with an expert
-            </button>
+            </Link>
           </motion.div>
         </div>
       </div>
