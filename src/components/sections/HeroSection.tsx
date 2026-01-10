@@ -27,44 +27,84 @@ export const HeroSection = () => {
     <section 
       className="relative overflow-hidden hero-section-mobile"
       style={{ 
-        backgroundColor: '#f5f3f0',
+        background: 'linear-gradient(135deg, #f8f9fa 0%, #f5f3f0 50%, #fafafa 100%)',
         minHeight: '600px',
         paddingBottom: isMobile ? '0' : '0',
         position: 'relative'
       }}
     >
-      {/* Background Image for Mobile - Using absolute positioned div */}
+      {/* Subtle texture overlay */}
       <div
-        className="hero-mobile-bg-container"
         style={{
           position: 'absolute',
           top: 0,
           left: 0,
           width: '100%',
           height: '100%',
-          minHeight: '600px',
-          backgroundImage: 'url(/hero-image.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center center',
-          backgroundRepeat: 'no-repeat',
+          backgroundImage: `
+            radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(245, 243, 240, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 40% 60%, rgba(250, 250, 250, 0.5) 0%, transparent 50%)
+          `,
+          opacity: 0.6,
           zIndex: 0,
           pointerEvents: 'none'
         }}
       />
-      {/* Overlay for mobile to ensure text readability */}
+      
+      {/* Background Image for Mobile - Using absolute positioned div */}
+      {isMobile && (
+        <div
+          className="hero-mobile-bg-container"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            minHeight: '600px',
+            backgroundImage: 'url(/hero-image.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
+            opacity: 0.4,
+            zIndex: 0,
+            pointerEvents: 'none'
+          }}
+        />
+      )}
+      
+      {/* Decorative circular outline in upper right */}
       <div
-        className="hero-mobile-overlay"
         style={{
           position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'linear-gradient(135deg, rgba(245, 243, 240, 0.3) 0%, rgba(245, 243, 240, 0.2) 100%)',
-          zIndex: 1,
+          top: '-100px',
+          right: '-100px',
+          width: '400px',
+          height: '400px',
+          border: '2px solid rgba(200, 200, 200, 0.15)',
+          borderRadius: '50%',
+          zIndex: 0,
           pointerEvents: 'none'
         }}
       />
+      
+      {/* Overlay for mobile to ensure text readability */}
+      {isMobile && (
+        <div
+          className="hero-mobile-overlay"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'linear-gradient(135deg, rgba(248, 249, 250, 0.4) 0%, rgba(248, 249, 250, 0.3) 100%)',
+            zIndex: 1,
+            pointerEvents: 'none'
+          }}
+        />
+      )}
       <div 
         className="flex flex-col lg:flex-row items-center justify-between max-w-[1600px] mx-auto relative"
         style={{
@@ -127,7 +167,7 @@ export const HeroSection = () => {
             style={{ 
               fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif',
               fontSize: isMobile ? '1.875rem' : 'clamp(1.75rem, 6vw, 3.5rem)',
-              fontWeight: 600,
+              fontWeight: isMobile ? 700 : 600,
               color: '#1f2937',
               lineHeight: isMobile ? '1.3' : '1.25',
               marginBottom: isMobile ? '1rem' : '1.5rem',
@@ -145,7 +185,7 @@ export const HeroSection = () => {
             }}
           >
             Transform your career with{' '}
-            <span style={{ color: '#0e7c86', fontWeight: 600, fontSize: 'inherit' }}>
+            <span style={{ color: '#0e7c86', fontWeight: isMobile ? 700 : 600, fontSize: 'inherit' }}>
               expert-led courses
             </span>
             {' '}and real-world internships.
@@ -162,7 +202,7 @@ export const HeroSection = () => {
               marginTop: 0,
               marginLeft: 0,
               marginRight: 0,
-              fontWeight: 400,
+              fontWeight: isMobile ? 600 : 400,
               width: '100%',
               padding: 0,
               wordWrap: 'break-word',

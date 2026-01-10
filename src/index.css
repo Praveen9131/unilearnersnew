@@ -29,7 +29,7 @@
   .hero-mobile-bg-container {
     display: block !important;
     visibility: visible !important;
-    opacity: 1 !important;
+    opacity: 0.4 !important;
   }
   .hero-mobile-overlay {
     display: block !important;
@@ -37,7 +37,7 @@
     opacity: 1 !important;
   }
   .hero-section-mobile {
-    background-color: transparent !important;
+    background: linear-gradient(135deg, #f8f9fa 0%, #f5f3f0 50%, #fafafa 100%) !important;
   }
 }
 
@@ -51,7 +51,7 @@
     visibility: hidden !important;
   }
   .hero-section-mobile {
-    background-color: #f5f3f0 !important;
+    background: linear-gradient(135deg, #f8f9fa 0%, #f5f3f0 50%, #fafafa 100%) !important;
   }
 }
 
@@ -172,7 +172,7 @@
 
 @layer components {
   .marquee {
-    animation: marquee 30s linear infinite;
+    animation: marquee 80s linear infinite;
   }
 
   .marquee:hover {
@@ -180,7 +180,7 @@
   }
 
   .marquee-reverse {
-    animation: marquee-reverse 30s linear infinite;
+    animation: marquee-reverse 80s linear infinite;
   }
 
   .marquee-reverse:hover {

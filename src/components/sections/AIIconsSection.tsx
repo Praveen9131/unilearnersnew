@@ -60,10 +60,10 @@ export const AIIconsSection = () => {
         >
           <p 
             style={{
-              fontSize: '0.75rem',
+              fontSize: 'clamp(0.95rem, 2vw, 1.15rem)',
               color: '#6b7280',
               fontWeight: 500,
-              marginBottom: '0.75rem',
+              marginBottom: '1rem',
               fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif'
             }}
           >
@@ -71,7 +71,7 @@ export const AIIconsSection = () => {
           </p>
           <h2 
             style={{
-              fontSize: '1.75rem',
+              fontSize: 'clamp(2rem, 5vw, 3rem)',
               fontWeight: 600,
               color: '#1f2937',
               lineHeight: '1.2',
@@ -85,10 +85,10 @@ export const AIIconsSection = () => {
           </h2>
           <p 
             style={{
-              fontSize: '0.85rem',
+              fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
               color: '#6b7280',
               maxWidth: '700px',
-              margin: '1.25rem auto 0',
+              margin: '1.5rem auto 0',
               lineHeight: '1.7',
               textAlign: 'center',
               fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif'

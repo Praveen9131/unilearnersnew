@@ -49,15 +49,6 @@ const footerLinks = {
     "Press & Media",
     "Become an Instructor"
   ],
-  "Help & Support": [
-    "FAQs",
-    "Student Support",
-    "Course Help",
-    "Technical Support",
-    "Refund Policy",
-    "Terms of Service",
-    "Privacy Policy"
-  ],
 };
 
 export const Footer = () => {
