@@ -21,7 +21,7 @@ export const courses: Course[] = [
     category: "Data Science",
     instructors: ["Praveen"],
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800",
-    language: "Hinglish",
+    language: "English",
     features: ["Course Resources", "Self Paced Learning", "Live Sessions", "Certification"],
     targetAudience: "College Student & Working Professional",
     price: 8000,
