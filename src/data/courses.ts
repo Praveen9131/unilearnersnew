@@ -64,7 +64,7 @@ export const courses: Course[] = [
     id: "4",
     title: "UI/UX Design Masterclass",
     category: "Design",
-    instructors: ["Karthik"],
+    instructors: ["Badri"],
     image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800",
     language: "English",
     features: ["Design Tools", "Portfolio Review", "Industry Projects"],
